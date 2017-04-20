@@ -1,11 +1,8 @@
 import { Meteor } from 'meteor/meteor';
 import React from 'react';
 import { render } from 'react-dom';
-import {
-  BrowserRouter as Router,
-  Route,
-  Link
-} from 'react-router-dom';
+import { Router, Route, IndexRoute, hashHistory } from 'react-router';
+import { Session } from 'meteor/session';
 
 import Home from '../imports/ui/HomePage.jsx';
 import Login from '../imports/ui/LoginPage.jsx';
@@ -20,27 +17,44 @@ import FooterNavBar from '../imports/ui/FooterNavBar.jsx';
 import Chat from '../imports/ui/Chat.jsx';
 import ContactUs from '../imports/ui/ContactUs.jsx';
 import Comment from '../imports/manage/MessageAPI.jsx';
+import CheckEmailPage from '../imports/ui/CheckEmailPage.jsx';
+import VerifiedPage from '../imports/ui/VerifiedPage.jsx';
 
-Meteor.startup( () => {
+export const App = ({ children }) => (
+  <div>
+    <HeadnavBar />
+    {children}
+    <FooterNavBar />
+  </div>
+); 
+
+Meteor.startup(() => {
   render(
- <Router>
-   <div>
-      <Route exact path="" component={HeadnavBar}/>
-      <Route exact path="/" component={Home}/>
-      <Route exact path="/home" component={Home}/>
-      <Route path="/register" component={Register}/>
-      <Route path ="/login" component={Login}/>
-      <Route path = "/uploaditem" component={ItemPage}/>
-      <Route path = "/manageitem" component={ItemManagementPage}/>
-      <Route path = "/itemgrid" component={HomeItemGrid}/>
-      <Route path = "/developers" component={developers}/>
-      <Route path = "/viewall" component={ViewAllItems}/>
-      <Route path = "/chat" component={Chat}/>
-      <Route path = "/contactus" component={ContactUs}/>
-      <Route path = "/comment" component={Comment}/>
-      <Route exact path="" component={FooterNavBar}/>
-
-      </div>
- </Router> , document.getElementById('render-home')
+    <Router history={hashHistory}>
+      <Route path="/" component={App}>
+      <Route path="home" component={Home} />
+      <Route path="register" component={Register} />
+      <Route path="login" component={Login} />
+      <Route path="uploaditem" component={ItemPage} />
+      <Route path="manageitem" component={ItemManagementPage} />
+      <Route path="itemgrid" component={HomeItemGrid} />
+      <Route path="developers" component={developers} />
+      <Route path="viewall" component={ViewAllItems} />
+      <Route path="chat" component={Chat} />
+      <Route path="contactus" component={ContactUs} />
+      <Route path="comment" component={Comment} />
+      <Route path="verify-email/:token" onEnter={VerifyEmail} component={Home} />
+      <Route path="check-email" component={CheckEmailPage} />
+      </Route>
+    </Router>, document.getElementById('render-home')
   );
 });
+
+export function VerifyEmail(nextState, replace) {
+  if (!Accounts.verifyEmail(nextState.params.token)) {
+    replace({
+      pathname: "/verified",
+      state: { nextPathname: nextState.location.pathname }
+    });
+  }
+}

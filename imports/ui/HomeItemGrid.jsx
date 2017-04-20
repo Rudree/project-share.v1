@@ -26,7 +26,7 @@ class ItemGrid extends React.Component {
               Featured Items
             </Header.Content>
           </Header>
-            <CardGroup fluid >
+            <CardGroup >
             {this.renderItemsList()}
             </CardGroup>
             </Segment>
@@ -38,6 +38,6 @@ class ItemGrid extends React.Component {
 
 export default createContainer(() => {
   return {
-    items: ItemCollection.find({}, { sort: { Name: 1 }, limit: 8 }).fetch()
+    items: ItemCollection.find({}, { sort: { Name: 1 }, limit: 6 }).fetch()
   };
 }, ItemGrid);

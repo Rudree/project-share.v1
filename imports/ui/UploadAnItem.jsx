@@ -2,6 +2,7 @@ import React from 'react';
 import { createContainer } from 'meteor/react-meteor-data';
 import { ItemCollection } from '../collections/items.js';
 import { Modal, Header, Message, Card, Input, Icon, Image, Button, Divider, Form, Segment } from 'semantic-ui-react'
+import { Session } from 'meteor/session';
 
 class UploadItemPage extends React.Component {
 
@@ -15,7 +16,7 @@ class UploadItemPage extends React.Component {
       ItemName: 'Tool Name',
       ItemDescription: 'This is a tool for testing the web app !!',
       ItemPrice : 'Free',
-      ItemOwner :'Share-admin',
+      ItemOwner :Session.get('user').username,
       ItemCondition : 'working',
     }
 
@@ -107,7 +108,7 @@ class UploadItemPage extends React.Component {
           <Button size='large' icon='send' color='blue' content='Submit' 
           onClick = {this.handleSubmit}/>
           }>
-          <Modal.Header textAlign='center'>
+          <Modal.Header>
             <Header as='h2' icon>
               <Icon name='send' />
               Upload an item

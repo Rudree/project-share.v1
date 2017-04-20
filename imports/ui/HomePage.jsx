@@ -1,10 +1,5 @@
 import React from 'react';
-import {
-  BrowserRouter as Router,
-  Route,
-  Link
-} from 'react-router-dom'
-
+import { Router, Route, IndexRoute, hashHistory } from 'react-router';
 import { Segment, Rail, Grid } from 'semantic-ui-react';
 import ItemGrid from '../ui/HomeItemGrid.jsx';
 import HomeSideMenu from '../ui/HomeSideMenu.jsx';

@@ -1,16 +1,16 @@
 import React, { Component, PropTypes } from 'react';
 import { createContainer } from 'meteor/react-meteor-data';
-import {Input, Label, Menu, Icon } from 'semantic-ui-react'
+import { Input, Label, Menu, Icon } from 'semantic-ui-react'
 
 import { ItemCollection } from '../collections/items.js';
 
 class HomeSideMenu extends React.Component {
 
 
-      render() {
+  render() {
 
-            return (
-                       <Menu vertical fluid>
+    return (
+      <Menu vertical fluid>
         <Menu.Item name='inbox' >
           <Label color='teal'>1</Label>
           Inbox
@@ -29,8 +29,8 @@ class HomeSideMenu extends React.Component {
           <Input icon='search' placeholder='Search mail...' />
         </Menu.Item>
       </Menu>
-            );
-      }
+    );
+  }
 }
 
 export default HomeSideMenu;
