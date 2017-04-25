@@ -155,9 +155,8 @@ export default class RegistrationPage extends Component {
           } else {
             var userId = Meteor.userId();
             Meteor.call('serverVerifyEmail', this.state.email, userId, (callback) => {
-              if (!callback.error) {
+              if (!callback) {
                 console.log("Verification Email Sent");
-                console.log(callback);
                 if (Meteor.user()) {
                   Session.set('user', Meteor.user());
                 }
