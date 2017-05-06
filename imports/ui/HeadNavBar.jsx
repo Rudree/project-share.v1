@@ -63,7 +63,6 @@ class HeadNavBar extends React.Component {
     return (
       <Grid>
     <Grid.Column width={4}>
-      <Image src='https://image.ibb.co/hb0nQk/share_logo.png' />
     </Grid.Column>
     <Grid.Column width={9}>
        <Menu size='huge' color='green'>
