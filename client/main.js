@@ -19,6 +19,11 @@ import ContactUs from '../imports/ui/ContactUs.jsx';
 import Comment from '../imports/manage/MessageAPI.jsx';
 import CheckEmailPage from '../imports/ui/CheckEmailPage.jsx';
 import VerifiedPage from '../imports/ui/VerifiedPage.jsx';
+import UserPage from '../imports/ui/UserPage.jsx';
+import NotFoundPage from '../imports/ui/NotFoundPage.jsx';
+import EditUserPage from '../imports/ui/EditUserPage.jsx';
+import EditItemPage from '../imports/ui/EditItemPage.jsx';
+import ItemDisplayPage from '../imports/ui/ItemPage.jsx';
 
 export const App = ({ children }) => (
   <div>
@@ -27,6 +32,7 @@ export const App = ({ children }) => (
     <FooterNavBar />
   </div>
 ); 
+
 
 Meteor.startup(() => {
   render(
@@ -45,6 +51,10 @@ Meteor.startup(() => {
       <Route path="comment" component={Comment} />
       <Route path="verify-email/:token" onEnter={VerifyEmail} component={Home} />
       <Route path="check-email" component={CheckEmailPage} />
+      <Route path="user/:username" component={UserPage} />
+      <Route path="user/:username/edit" component={EditUserPage} />
+      <Route path="items/:id/edit" component={EditItemPage} />
+      <Route path="item/:id" component={ItemDisplayPage} />
       </Route>
     </Router>, document.getElementById('render-home')
   );
