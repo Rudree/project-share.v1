@@ -96,7 +96,7 @@ export default class LoginPage extends Component {
         if (Meteor.user()) {
           Session.set('user', Meteor.user());
         }
-        hashHistory.push('/home');
+        hashHistory.push(`/user/${this.state.username}`);
       }
     });
 

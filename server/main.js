@@ -2,11 +2,9 @@ import { Meteor } from 'meteor/meteor';
 import '../imports/collections/items.js';
 import '../imports/collections/messages.js'
 
-
-
 Meteor.startup(() => {
   // code to run on server at startup
- //add process.env.MAIL_URL here
+  //add process.env.MAIL_URL here
 });
 
 Meteor.methods({
@@ -27,10 +25,26 @@ Meteor.methods({
     }
 
     var emailTest = new RegExp("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$");
-    if(emailTest.test(user.email) == false) {
-       throw new Meteor.Error(403, 'Invalid email address!');
+    if (emailTest.test(user.email) == false) {
+      throw new Meteor.Error(403, 'Invalid email address!');
     }
 
+    return true;
+  },
+
+  updateUserAvatarUrl: function ( avatarUrl, userId, callback) {
+    console.log("saving image URl...");
+     Meteor.users.update(userId, {
+       $set: { "profile.avatarUrl": avatarUrl}
+    });
+    return true;
+  },
+
+  updateUserProfileData: function ( user, profile, callback) {
+    console.log("saving user profile", user, profile);
+     Meteor.users.update(user, {
+       $set: { "profile": profile}
+    });
     return true;
   }
 
