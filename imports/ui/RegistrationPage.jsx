@@ -147,7 +147,10 @@ export default class RegistrationPage extends Component {
           password: this.state.password,
           profile: {
             firstName: this.state.firstName,
-            lastName: this.state.lastName
+            lastName: this.state.lastName,
+            avatarUrl: 'http://res.cloudinary.com/rudree/image/upload/v1493390709/user/default.png',
+            address: "",
+            aboutMe: ""
           }
         }, (err) => {
           if (err) {
