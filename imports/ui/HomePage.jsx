@@ -12,14 +12,16 @@ class HomePage extends React.Component {
       return (
          <div>    
           <Segment.Group >
-          <Segment inverted color ='blue' compact raised>
+          <Segment color ='green' compact raised>
           <HomeSearchBar />
           </Segment>
           
             <Grid columns={2}>
             <Grid.Row>
               <Grid.Column width={4} >
+                <Segment padded="very">
                   <HomeSideMenu/>
+                   </Segment>
               </Grid.Column>
               <Grid.Column width={12} floated='right'>
                   <ItemGrid/>          

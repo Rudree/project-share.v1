@@ -4,13 +4,14 @@ import { Icon, Header, Table, CardGroup, Segment } from 'semantic-ui-react'
 
 import { ItemCollection } from '../collections/items.js';
 
-import Item from '../objects/ItemCardFull.jsx';
+//import Item from '../objects/ItemCardFull.jsx';
+import ItemCard from './items/Featured.jsx';
 
 class ItemGrid extends React.Component {
 
   renderItemsList() {
     return this.props.items.map((item) => (
-      <Item key={item._id} item={item} />
+      <ItemCard key={item._id} item={item} />
     ));
 
   }

@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { createContainer } from 'meteor/react-meteor-data';
-import { Input, Modal, Icon, Divider, Image, Header, Button } from 'semantic-ui-react'
+import { Grid,Input, Modal, Icon, Divider, Image, Header, Button, Container } from 'semantic-ui-react'
 
 import { ItemCollection } from '../collections/items.js';
 
@@ -37,24 +37,43 @@ class HomeSearchBar extends React.Component {
 
   render() {
     return (
-      <div>
-        <Input size='large' icon={<Icon name='search' circular link />} placeholder='Search...' value={this.state.searchterm} onChange={this.updateStateSearchTerm} />
-        <Modal trigger={<Button size='large' onClick={this.handleSubmit}> Search </Button>}>
-          <Modal.Header>You searched for : {this.state.searchterm}</Modal.Header>
-          <Modal.Content>
-            {this.renderResults()}
-          </Modal.Content>
-        </Modal>
-
-      </div>
-    );
+      <Container text>
+        <Grid>
+          <Grid.Row columns={2}>
+            <Grid.Column>
+              <Input size='large' icon={<Icon name='search' circular link />} placeholder='Search...' value={this.state.searchterm} onChange={this.updateStateSearchTerm.bind(this)} />
+              </Grid.Column>
+              <Grid.Column>
+              <Modal trigger={<Button size='medium' color='green' > Search </Button>}>
+                <Modal.Header>You searched for : {this.state.searchterm}</Modal.Header>
+                <Modal.Content>
+                  {this.renderResults()}
+                </Modal.Content>
+              </Modal>
+              </Grid.Column>
+              </Grid.Row>
+              </Grid>          
+      </Container>
+            );
 
   }
 }
 
 export default createContainer(() => {
   return {
-    items: ItemCollection.find({ Name: 'A' }, { sort: { Name: 1 } }).fetch()
+              items: ItemCollection.find({Name: 'A' }, {sort: {Name: 1 } }).fetch()
 
   };
 }, HomeSearchBar);
+
+
+/*    <div>
+              <Input size='large' icon={<Icon name='search' circular link />} placeholder='Search...' value={this.state.searchterm} onChange={this.updateStateSearchTerm} />
+              <Modal trigger={<Button size='large' onClick={this.handleSubmit}> Search </Button>}>
+                <Modal.Header>You searched for : {this.state.searchterm}</Modal.Header>
+                <Modal.Content>
+                  {this.renderResults()}
+                </Modal.Content>
+              </Modal>
+
+            </div>*/
