@@ -5,6 +5,8 @@ import '../imports/collections/messages.js'
 Meteor.startup(() => {
   // code to run on server at startup
   //add process.env.MAIL_URL here
+  process.env.MAIL_URL = "smtp://postmaster@sandbox60ea7d6f8f844c7795521e2432ecbd6d.mailgun.org:fd369a3ccd980a42e268e373f0f14240@smtp.mailgun.org:587";
+
 });
 
 Meteor.methods({
@@ -32,20 +34,25 @@ Meteor.methods({
     return true;
   },
 
-  updateUserAvatarUrl: function ( avatarUrl, userId, callback) {
+  updateUserAvatarUrl: function (avatarUrl, userId, callback) {
     console.log("saving image URl...");
-     Meteor.users.update(userId, {
-       $set: { "profile.avatarUrl": avatarUrl}
+    Meteor.users.update(userId, {
+      $set: { "profile.avatarUrl": avatarUrl }
     });
     return true;
   },
 
-  updateUserProfileData: function ( user, profile, callback) {
+  updateUserProfileData: function (user, profile, callback) {
     console.log("saving user profile", user, profile);
-     Meteor.users.update(user, {
-       $set: { "profile": profile}
+ 
+    Meteor.users.update(user, {
+      $set: { "profile": profile }
     });
     return true;
   }
 
+});
+
+Meteor.publish("users", function () {
+  return Meteor.users.find({}, { fields: { createdAt: true, profile: true, emails: true, username: true } });
 });
