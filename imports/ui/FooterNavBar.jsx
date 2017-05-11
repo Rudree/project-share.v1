@@ -8,17 +8,11 @@ class FooterNavBar extends React.Component {
 
       <div>
         <Divider hidden />
-        <Segment textAlign='center' color='green' raised inverted>
-          <Icon circular inverted color='blue' size="large" name='facebook f' /> |
-    <Icon circular inverted color='blue' size="large" name='twitter' />  |
-    <Icon circular inverted color='blue' size="large" name='instagram' />  |
-    <Icon circular inverted color='blue' size="large" name='google plus' /> |
-    <Icon circular inverted color='blue' size="large" name='pinterest' /> |
-    <Icon circular inverted color='blue' size="large" name='youtube' /> |
-   <h4 color="green">
+        <Segment textAlign='center' color="green" raised>
+          <h4 color="green">
             SHARE IS A PLATFORM FOR REDUCING RESOURCE USAGE AND RAISING DONATION FOR CHARITY
     </h4>
-          <h6>Contact Us | Feedback | Review</h6>
+       <h5 color="green"><a href='#/contactus' >Contact Us</a></h5>
         </Segment>
       </div>
 

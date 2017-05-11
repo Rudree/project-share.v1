@@ -22,7 +22,7 @@ export default class ItemCard extends Component {
 
     return (
 
-           <Card>
+           <Card >
             <Image src='https://s-media-cache-ak0.pinimg.com/736x/54/7a/9c/547a9cc6b93e10261f1dd8a8af474e03.jpg' />
             <Card.Content>
               <Card.Header>
